@@ -78,7 +78,7 @@ app.put('/usuario/:id', [verificaToken, verificaAdmin_Role], (req, res)=> {
     let id  =  req.params.id;
     let body = _.pick(req.body, ['nombre','email','img','role','estado']);
 
-    Usuario.findOneAndUpdate(id, body, {new: true, runValidators: true}, (err, usuarioDB) => {
+    Usuario.findByIdAndUpdate(id, body, {new: true, runValidators: true}, (err, usuarioDB) => {
         
         if(err){
             return res.status(400).json({
